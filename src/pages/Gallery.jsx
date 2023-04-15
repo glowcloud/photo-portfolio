@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ImageList,
   ImageListItem,
@@ -15,6 +15,20 @@ import CloseIcon from "@mui/icons-material/Close";
 const Gallery = ({ images }) => {
   const [open, setOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(null);
+  const [columns, setColumns] = useState(
+    window.innerWidth < 600 ? 1 : window.innerWidth < 900 ? 2 : 3
+  );
+
+  useEffect(() => {
+    const getColumns = () => {
+      if (window.innerWidth < 600) setColumns(1);
+      else if (window.innerWidth < 900) setColumns(2);
+      else setColumns(3);
+    };
+
+    window.addEventListener("resize", getColumns);
+    return () => window.removeEventListener("resize", getColumns);
+  }, []);
 
   const handleOpen = (index) => {
     setOpen(true);
@@ -44,11 +58,9 @@ const Gallery = ({ images }) => {
     ];
   };
 
-  getNavigationIndexes();
-
   return (
     <>
-      <ImageList variant="masonry" cols={3} gap={10}>
+      <ImageList variant="masonry" cols={columns} gap={10}>
         {images.map((image, index) => (
           <ImageListItem
             key={index}
@@ -81,8 +93,9 @@ const Gallery = ({ images }) => {
           justifyContent="center"
           height="100%"
         >
+          {/* IMAGE COUNT + EXIT */}
           <Box
-            width="1200px"
+            width={{ xs: 300, sm: 480, md: 800, lg: 900, xl: 1200 }}
             display="flex"
             justifyContent="space-between"
             alignItems="end"
@@ -97,7 +110,9 @@ const Gallery = ({ images }) => {
               <CloseIcon fontSize="inherit" sx={{ color: "#eee" }} />
             </IconButton>
           </Box>
-          <Box display="flex" width="100%" flexGrow={1}>
+
+          {/* IMAGE  */}
+          <Box display="flex" width="100%">
             <Box
               width="100%"
               height="100%"
@@ -122,18 +137,28 @@ const Gallery = ({ images }) => {
             >
               <NavigateBeforeIcon fontSize="large" sx={{ color: "#eee" }} />
             </Box>
-            <Box width={1200} height={800}>
-              <img
+
+            {/* IMAGE */}
+            <Box
+              width={{ xs: 300, sm: 480, md: 800, lg: 900, xl: 1200 }}
+              height={{ xs: "100%", md: 700 }}
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Box
+                component="img"
                 src={images[currentIndex]}
                 alt={`Image ${currentIndex}`}
                 loading="lazy"
-                style={{
-                  width: 1200,
-                  height: 800,
+                width={{ xs: 300, sm: 480, md: 800, lg: 900, xl: 1200 }}
+                height={{ xs: "100%", md: 700 }}
+                sx={{
                   objectFit: "contain",
                 }}
               />
             </Box>
+
             <Box
               width="100%"
               height="100%"
@@ -159,12 +184,14 @@ const Gallery = ({ images }) => {
               <NavigateNextIcon fontSize="large" sx={{ color: "#eee" }} />
             </Box>
           </Box>
+
+          {/* PREVIEW */}
           <Grid
             container
-            display="flex"
+            display={{ xs: "none", md: "flex" }}
             alignItems="center"
             justifyContent="center"
-            width="1200px"
+            width={{ md: 900, xl: 1200 }}
             height="100%"
           >
             {getNavigationIndexes().map((index) => (
@@ -173,25 +200,29 @@ const Gallery = ({ images }) => {
                 md={2}
                 mx={0.5}
                 key={index}
-                component="img"
-                src={images[index]}
-                alt={`Image ${index}`}
-                loading="lazy"
-                maxWidth={400}
-                maxHeight={100}
-                sx={{
-                  objectFit: "contain",
-                  opacity: index === currentIndex ? 1 : 0.5,
-                  // border: index === currentIndex ? "1px solid white" : "none",
-                  "&:hover": {
-                    // border: "1px solid white",
-                    opacity: 1,
-                    transition: "opacity 300ms",
-                    cursor: "pointer",
-                  },
-                }}
                 onClick={() => setCurrentIndex(index)}
-              />
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+              >
+                <Box
+                  component="img"
+                  src={images[index]}
+                  alt={`Image ${index}`}
+                  loading="lazy"
+                  width={400}
+                  height={100}
+                  sx={{
+                    objectFit: "contain",
+                    opacity: index === currentIndex ? 1 : 0.5,
+                    "&:hover": {
+                      opacity: 1,
+                      transition: "opacity 300ms",
+                      cursor: "pointer",
+                    },
+                  }}
+                />
+              </Grid>
             ))}
           </Grid>
         </Box>

@@ -28,13 +28,20 @@ const imageRates = [
 
 const Pricing = () => {
   return (
-    <Box display="flex" justifyContent="center" px={20} py={25}>
+    <Box
+      display="flex"
+      flexDirection={{ xs: "column", md: "row" }}
+      justifyContent="center"
+      px={{ xs: 0, md: 3, lg: 15 }}
+      py={{ xs: 5, md: 25 }}
+    >
       <Box
         flexGrow={1}
         display="flex"
         flexDirection="column"
         alignItems="center"
         mx={2}
+        mb={{ xs: 2, md: 0 }}
       >
         <Typography variant="h5" gutterBottom>
           Per Image

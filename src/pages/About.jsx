@@ -13,8 +13,7 @@ const About = () => {
       justifyContent="center"
       alignItems="center"
       my={5}
-      mx={{ md: 10, sm: 0 }}
-      id="contact"
+      mx={{ xs: 0, md: 10 }}
     >
       <Box
         component="img"
@@ -23,12 +22,13 @@ const About = () => {
         background="transparent"
         sx={{ width: "300px" }}
       />
-      <Box p={3}>
+      <Box p={{ xs: 0, sm: 3 }}>
         <Typography
           variant="h1"
           sx={{
+            pt: 2,
+            px: 2,
             textAlign: "center",
-            fontWeight: "500",
             color: "#8d5185",
             backgroundImage: "linear-gradient(315deg, #8d5185 0%, #a1bafe 74%)",
             WebkitBackgroundClip: "text",
@@ -52,7 +52,7 @@ const About = () => {
           gutterBottom
           sx={{
             textAlign: "justify",
-            px: 20,
+            px: { xs: 5, lg: 10 },
           }}
         >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ultricies
@@ -70,7 +70,7 @@ const About = () => {
           gutterBottom
           sx={{
             textAlign: "justify",
-            px: 20,
+            px: { xs: 5, lg: 10 },
           }}
         >
           Nulla convallis mattis nulla sed cursus. Praesent feugiat tellus
@@ -84,7 +84,7 @@ const About = () => {
           gutterBottom
           sx={{
             textAlign: "justify",
-            px: 20,
+            px: { xs: 5, lg: 10 },
           }}
         >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
@@ -105,7 +105,7 @@ const About = () => {
           gutterBottom
           sx={{
             textAlign: "justify",
-            px: 20,
+            px: { xs: 5, lg: 10 },
           }}
         >
           Donec felis lectus, vehicula vel est at, pharetra ornare dolor. Nunc
