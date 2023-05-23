@@ -144,7 +144,7 @@ const Gallery = ({ images }) => {
             {/* IMAGE */}
             <Box
               width={{ sm: 480, md: 800, lg: 900, xl: 1200 }}
-              height={700}
+              height={{ sm: 500, md: 550, xl: 700 }}
               display="flex"
               alignItems="center"
               justifyContent="center"
@@ -155,7 +155,7 @@ const Gallery = ({ images }) => {
                 alt={`Image ${currentIndex}`}
                 loading="lazy"
                 width={{ sm: 480, md: 800, lg: 900, xl: 1200 }}
-                height={700}
+                height={{ sm: 500, md: 550, xl: 700 }}
                 sx={{
                   objectFit: "contain",
                 }}
@@ -196,7 +196,7 @@ const Gallery = ({ images }) => {
             alignItems="center"
             justifyContent="center"
             width={{ md: 900, xl: 1200 }}
-            height="100%"
+            my={2}
           >
             {getNavigationIndexes().map((index) => (
               <Grid
