@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -21,6 +21,11 @@ const Layout = ({ children }) => {
   const [listOpen, setListOpen] = useState(false);
   const [drawerMobileOpen, setDrawerMobileOpen] = useState(false);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setDrawerMobileOpen(false);
+  }, [pathname]);
 
   const handleListClick = () => {
     setListOpen((prevListOpen) => !prevListOpen);
@@ -99,8 +104,8 @@ const Layout = ({ children }) => {
       <AppBar
         position="fixed"
         sx={{
-          backgroundColor: "rgba(100, 100, 100, 1)",
-          display: { xs: "block", sm: "none" },
+          backgroundColor: "#8d5185",
+          display: { xs: "block", md: "none" },
         }}
       >
         <Toolbar>
@@ -116,7 +121,7 @@ const Layout = ({ children }) => {
         variant="permanent"
         anchor="left"
         sx={{
-          display: { xs: "none", sm: "block" },
+          display: { xs: "none", md: "block" },
           width: 240,
           flexShrink: 0,
           "& .MuiDrawer-paper": {
@@ -132,7 +137,7 @@ const Layout = ({ children }) => {
         variant="temporary"
         anchor="left"
         sx={{
-          display: { xs: "block", sm: "none" },
+          display: { xs: "block", md: "none" },
           width: 240,
           flexShrink: 0,
           "& .MuiDrawer-paper": {
@@ -148,7 +153,7 @@ const Layout = ({ children }) => {
       <Box
         component="main"
         flexGrow={1}
-        mt={{ xs: "2rem", sm: 0 }}
+        mt={{ xs: "2rem", md: 0 }}
         pt={3}
         px={{ lg: "5rem", md: "2rem", sm: "1rem", xs: 1 }}
       >

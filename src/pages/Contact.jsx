@@ -15,7 +15,6 @@ const Contact = () => {
     message: "",
   });
   const [error, setError] = useState(false);
-  const [resultMsg, setResultMsg] = useState("");
   const [isSnackbar, setIsSnackbar] = useState(false);
 
   const isEmail = (email) => {
@@ -29,7 +28,6 @@ const Contact = () => {
     }
 
     setIsSnackbar(false);
-    setResultMsg("");
   };
 
   const onSubmit = async () => {
@@ -54,7 +52,7 @@ const Contact = () => {
       justifyContent="center"
       alignItems="center"
       height="90vh"
-      mx={{ md: 10, sm: 0 }}
+      mx={{ xs: 1, sm: 5, md: 10 }}
       id="contact"
     >
       <Typography

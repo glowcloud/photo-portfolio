@@ -21,8 +21,10 @@ const Gallery = ({ images }) => {
 
   useEffect(() => {
     const getColumns = () => {
-      if (window.innerWidth < 600) setColumns(1);
-      else if (window.innerWidth < 900) setColumns(2);
+      if (window.innerWidth < 600) {
+        setColumns(1);
+        setOpen(false);
+      } else if (window.innerWidth < 900) setColumns(2);
       else setColumns(3);
     };
 
@@ -68,6 +70,7 @@ const Gallery = ({ images }) => {
               handleOpen(index);
             }}
             sx={{
+              pointerEvents: { xs: "none", sm: "auto" },
               "&:hover": {
                 cursor: "pointer",
                 opacity: 0.75,
@@ -95,7 +98,7 @@ const Gallery = ({ images }) => {
         >
           {/* IMAGE COUNT + EXIT */}
           <Box
-            width={{ xs: 300, sm: 480, md: 800, lg: 900, xl: 1200 }}
+            width={{ sm: 480, md: 800, lg: 900, xl: 1200 }}
             display="flex"
             justifyContent="space-between"
             alignItems="end"
@@ -111,7 +114,7 @@ const Gallery = ({ images }) => {
             </IconButton>
           </Box>
 
-          {/* IMAGE  */}
+          {/* PREV NAV  */}
           <Box display="flex" width="100%">
             <Box
               width="100%"
@@ -140,8 +143,8 @@ const Gallery = ({ images }) => {
 
             {/* IMAGE */}
             <Box
-              width={{ xs: 300, sm: 480, md: 800, lg: 900, xl: 1200 }}
-              height={{ xs: "100%", md: 700 }}
+              width={{ sm: 480, md: 800, lg: 900, xl: 1200 }}
+              height={700}
               display="flex"
               alignItems="center"
               justifyContent="center"
@@ -151,14 +154,15 @@ const Gallery = ({ images }) => {
                 src={images[currentIndex]}
                 alt={`Image ${currentIndex}`}
                 loading="lazy"
-                width={{ xs: 300, sm: 480, md: 800, lg: 900, xl: 1200 }}
-                height={{ xs: "100%", md: 700 }}
+                width={{ sm: 480, md: 800, lg: 900, xl: 1200 }}
+                height={700}
                 sx={{
                   objectFit: "contain",
                 }}
               />
             </Box>
 
+            {/* NEXT NAV */}
             <Box
               width="100%"
               height="100%"
@@ -188,7 +192,7 @@ const Gallery = ({ images }) => {
           {/* PREVIEW */}
           <Grid
             container
-            display={{ xs: "none", md: "flex" }}
+            display={{ sm: "none", md: "flex" }}
             alignItems="center"
             justifyContent="center"
             width={{ md: 900, xl: 1200 }}
@@ -210,10 +214,10 @@ const Gallery = ({ images }) => {
                   src={images[index]}
                   alt={`Image ${index}`}
                   loading="lazy"
-                  width={400}
+                  width={{ md: 150, xl: 200 }}
                   height={100}
                   sx={{
-                    objectFit: "contain",
+                    objectFit: "cover",
                     opacity: index === currentIndex ? 1 : 0.5,
                     "&:hover": {
                       opacity: 1,

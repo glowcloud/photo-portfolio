@@ -33,7 +33,7 @@ const Pricing = () => {
       flexDirection={{ xs: "column", md: "row" }}
       justifyContent="center"
       px={{ xs: 0, md: 3, lg: 15 }}
-      py={{ xs: 5, md: 25 }}
+      py={{ xs: 5, md: 20 }}
     >
       <Box
         flexGrow={1}
@@ -41,7 +41,7 @@ const Pricing = () => {
         flexDirection="column"
         alignItems="center"
         mx={2}
-        mb={{ xs: 2, md: 0 }}
+        mb={{ xs: 2 , md: 0 }}
       >
         <Typography variant="h5" gutterBottom>
           Per Image
