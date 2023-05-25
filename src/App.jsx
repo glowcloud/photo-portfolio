@@ -8,7 +8,7 @@ import Contact from "./pages/Contact";
 import Pricing from "./pages/Pricing";
 import About from "./pages/About";
 import Gallery from "./pages/Gallery";
-import Layout from "./components/Layout";
+import Layout from "./components/layout/Layout";
 
 function App() {
   useEffect(() => {
