@@ -31,6 +31,7 @@ const About = () => {
           pt: 2,
           px: 2,
           textAlign: "center",
+          fontWeight: "bold",
           color: "#8d5185",
           backgroundImage: "linear-gradient(315deg, #8d5185 0%, #a1bafe 74%)",
           WebkitBackgroundClip: "text",

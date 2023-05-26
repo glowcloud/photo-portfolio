@@ -5,7 +5,7 @@ const ImageModalPrev = ({ imagesLength, setCurrentIndex }) => {
   return (
     <Box
       width="100%"
-      height="100%"
+      height={{ xs: "90vh", md: "75vh" }}
       display="flex"
       justifyContent="right"
       alignItems="center"

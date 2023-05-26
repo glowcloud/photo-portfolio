@@ -25,13 +25,12 @@ const ImageModalPreview = ({ images, currentIndex, setCurrentIndex }) => {
       display={{ sm: "none", md: "flex" }}
       alignItems="center"
       justifyContent="center"
-      width={{ md: 900, xl: 1200 }}
       my={2}
+      height="15vh"
     >
       {getNavigationIndexes().map((index) => (
         <Grid
           item
-          md={2}
           mx={0.5}
           key={index}
           onClick={() => setCurrentIndex(index)}
@@ -44,7 +43,7 @@ const ImageModalPreview = ({ images, currentIndex, setCurrentIndex }) => {
             src={images[index]}
             alt={`Image ${index}`}
             loading="lazy"
-            width={{ md: 150, xl: 200 }}
+            width={{ md: 150, lg: 200 }}
             height={100}
             sx={{
               objectFit: "cover",

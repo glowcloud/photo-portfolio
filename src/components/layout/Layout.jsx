@@ -29,7 +29,6 @@ const Layout = ({ children }) => {
       <AppBar
         position="fixed"
         sx={{
-          backgroundColor: "#8d5185",
           display: { xs: "block", md: "none" },
         }}
       >

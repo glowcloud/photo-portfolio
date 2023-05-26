@@ -19,13 +19,7 @@ const ImageModal = ({
         backgroundColor: "rgba(0, 0, 0, 0.8)",
       }}
     >
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        height="100%"
-      >
+      <Box height="100vh">
         {/* IMAGE COUNT + CLOSE */}
         <ImageModalTop
           text={`${currentIndex + 1}/${images.length}`}
@@ -33,7 +27,7 @@ const ImageModal = ({
         />
 
         {/* IMAGE + NAV  */}
-        <Box display="flex" width="100%">
+        <Box display="flex" justifyContent="space-between" alignItems="center">
           {/* PREV NAV */}
           <ImageModalPrev
             imagesLength={images.length}
@@ -41,20 +35,14 @@ const ImageModal = ({
           />
 
           {/* IMAGE */}
-          <Box
-            width={{ sm: 480, md: 800, lg: 900, xl: 1200 }}
-            height={{ sm: 500, md: 550, xl: 700 }}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
+          <Box display="flex" alignItems="center" justifyContent="center">
             <Box
               component="img"
               src={images[currentIndex]}
               alt={`Image ${currentIndex}`}
               loading="lazy"
-              width={{ sm: 480, md: 800, lg: 900, xl: 1200 }}
-              height={{ sm: 500, md: 550, xl: 700 }}
+              width={{ xs: "80vw", md: "85vw" }}
+              height={{ xs: "90vh", md: "75vh" }}
               sx={{
                 objectFit: "contain",
               }}

@@ -3,13 +3,8 @@ import CloseIcon from "@mui/icons-material/Close";
 
 const ImageModalTop = ({ text, handleClose }) => {
   return (
-    <Box
-      width={{ sm: 480, md: 800, lg: 900, xl: 1200 }}
-      display="flex"
-      justifyContent="space-between"
-      alignItems="end"
-    >
-      <Typography fontSize="large" sx={{ color: "#eee", pl: 2, pb: "12px" }}>
+    <Box display="flex" justifyContent="space-between" alignItems="end" px={5}>
+      <Typography fontSize="large" sx={{ color: "#eee", pb: "12px" }}>
         {text}
       </Typography>
       <IconButton size="large" onClick={handleClose}>

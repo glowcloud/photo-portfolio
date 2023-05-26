@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, createTheme, ThemeProvider } from "@mui/material";
 
 import { peopleImages, natureImages, cityImages } from "./assets/images";
 
@@ -23,31 +23,44 @@ function App() {
     };
   }, []);
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#8d5185",
+      },
+    },
+    typography: {
+      fontFamily: ["Lora", "serif"].join(","),
+    },
+  });
+
   return (
-    <BrowserRouter>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Gallery images={peopleImages} />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/pricing" element={<Pricing />} />
-          <Route path="/about" element={<About />} />
-          <Route
-            path="/gallery/city"
-            element={<Gallery images={cityImages} />}
-          />
-          <Route
-            path="/gallery/people"
-            element={<Gallery images={peopleImages} />}
-          />
-          <Route
-            path="/gallery/nature"
-            element={<Gallery images={natureImages} />}
-          />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      </Layout>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Gallery images={peopleImages} />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/about" element={<About />} />
+            <Route
+              path="/gallery/city"
+              element={<Gallery images={cityImages} />}
+            />
+            <Route
+              path="/gallery/people"
+              element={<Gallery images={peopleImages} />}
+            />
+            <Route
+              path="/gallery/nature"
+              element={<Gallery images={natureImages} />}
+            />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
