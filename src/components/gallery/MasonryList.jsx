@@ -1,26 +1,15 @@
-import { useEffect, useState } from "react";
-import { ImageList, ImageListItem } from "@mui/material";
+import { ImageList, ImageListItem, useMediaQuery } from "@mui/material";
 
 const MasonryList = ({ images, handleOpen, handleClose }) => {
-  const [columns, setColumns] = useState(
-    window.innerWidth < 600 ? 1 : window.innerWidth < 900 ? 2 : 3
+  const isExtraSmallScreen = useMediaQuery((theme) =>
+    theme.breakpoints.down("sm")
   );
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("md"));
 
-  useEffect(() => {
-    const getColumns = () => {
-      if (window.innerWidth < 600) {
-        setColumns(1);
-        handleClose();
-      } else if (window.innerWidth < 900) setColumns(2);
-      else setColumns(3);
-    };
-
-    window.addEventListener("resize", getColumns);
-    return () => window.removeEventListener("resize", getColumns);
-  }, []);
+  const getColumns = () => (isExtraSmallScreen ? 1 : isSmallScreen ? 2 : 3);
 
   return (
-    <ImageList variant="masonry" cols={columns} gap={10}>
+    <ImageList variant="masonry" cols={getColumns()} gap={10}>
       {images.map((image, index) => (
         <ImageListItem
           key={index}
